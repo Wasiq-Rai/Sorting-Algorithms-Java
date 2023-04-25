@@ -7,7 +7,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
+
 public class ReportGenerator {
+    public static List<Object[]> tableDataToGenerateChart = new ArrayList<>();
+
     public static void main(String[] args) {
         JFileChooser fileChooser = new JFileChooser();
         int returnValue = fileChooser.showOpenDialog(null);
@@ -52,8 +57,9 @@ public class ReportGenerator {
 
                     tableData.add(new Object[]{n, avgCount, cvCount, avgTime, cvTime});
                 }
+                DisplayChart.createChart(tableData);
 
-                showResults(tableData);
+                 showResults(tableData);
 
             } catch (IOException e) {
                 System.err.println("Error reading file: " + selectedFile.getName());
@@ -61,6 +67,8 @@ public class ReportGenerator {
             }
         }
     }
+
+  
 
     private static void showResults(List<Object[]> tableData) {
         String[] columnNames = {
@@ -87,6 +95,10 @@ public class ReportGenerator {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
+    
+      
+    
+    
 }
 
 
